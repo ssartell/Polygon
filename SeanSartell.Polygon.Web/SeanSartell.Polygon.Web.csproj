@@ -94,8 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\app.js" />
-    <Content Include="Scripts\app\engine\camera.js" />
     <Content Include="Scripts\app\draw\canvas.js" />
+    <Content Include="Scripts\app\draw\drawable.js" />
     <Content Include="Scripts\app\engine\mainloop.js" />
     <Content Include="Scripts\app\draw\circle.js" />
     <Content Include="Scripts\app\math\mat3.js" />

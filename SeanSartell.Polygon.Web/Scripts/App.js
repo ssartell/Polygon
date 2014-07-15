@@ -20,8 +20,8 @@ requirejs(["app/draw/canvas", "app/engine/mainloop", "app/math/vec2", "app/math/
     });
 
     var loop = new MainLoop({
-        update: function (time) {
-            circle.rotate(2 * Math.PI * time);
+        update: function (dt) {
+            circle.rotate(2 * Math.PI * dt);
             circle.translate(new Vec2(Math.cos(circle.angle), Math.sin(circle.angle)));
         },
         render: function () {
