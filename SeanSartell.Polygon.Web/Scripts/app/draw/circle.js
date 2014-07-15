@@ -1,22 +1,20 @@
-﻿define(["jQuery", "app/math/vec2", "app/math/mat3"], function ($, Vec2, Mat3) {
+﻿define(["app/draw/drawable", "app/math/vec2", "jQuery"], function (Drawable, Vec2, $) {
     function Circle(options) {
-        this.center = options.center || new Vec2();
         this.radius = options.radius || 1;
 
         var defaultStyles = { fillStyle: "#fff", strokeStyle: "#000", lineWidth: 1 };
         this.style = $.extend(defaultStyles, options.style);
+
+        Drawable.call(this, options);
     };
 
-    Circle.prototype.draw = function (canvas, camera) {
-        var dCenter, dRadius;
-        var context = canvas.context;
-        var transform = camera.toMat3();
+    Circle.prototype = Object.create(Drawable.prototype);
 
-        dCenter = transform.multiply(this.center);
-        dRadius = transform.multiply(new Vec2(this.radius, 0)).subtract(dCenter).length();
+    Circle.prototype.draw = function (canvas) {
+        var context = canvas.context;
         
         context.beginPath();
-        context.arc(dCenter[0], dCenter[1], dRadius, 0, 2 * Math.PI, false);
+        context.arc(this.position[0], this.position[1], this.radius, 0, 2 * Math.PI, false);
         context.fillStyle = this.style.fillStyle;
         context.fill();
         context.lineWidth = this.style.lineWidth;
